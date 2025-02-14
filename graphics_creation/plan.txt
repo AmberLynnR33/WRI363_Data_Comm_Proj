@@ -1,0 +1,11 @@
+# take data from 
+
+Users can select data by date, theme I related to, or by card to see related data
+
+Date: see a list of cards I pulled on each date
+Theme: displays what cards I related to the theme, and dates I related to the theme
+Card: displays how often I pulled the card, upright vs resvered pulls, what themes I related it to (upright and reversed), 
+
+Other aggregate data I want to display on the site:
+
+Display cards by date, and cards by theme I related to
