@@ -35,8 +35,9 @@ visual_selection = st.sidebar.selectbox(
 
 # DISPLAYING VISUALS
 
-
-if visual_selection == "Date vs Card Pulled":
+if visual_selection == None:
+    st.write("Select a visual to display on the sidebar!")
+elif visual_selection == "Date vs Card Pulled":
     st.sidebar.write("Date Range:")
     start_date_range = st.sidebar.date_input("Select a Starting Date", value=datetime.date(2024, 7,17), min_value=datetime.date(2024, 7, 17), max_value=datetime.date(2025, 1, 19))
     end_date_range = st.sidebar.date_input("Select an Ending Date", value=datetime.date(2025, 1, 19), min_value=datetime.date(2024, 7, 17), max_value=datetime.date(2025, 1, 19))
