@@ -7,8 +7,8 @@ st.set_page_config(layout="wide")
 
 st.title("Oracle Cards: Divination, Magick, or Statistically Likely Outcomes?")
 
-loc_pull_data = "../data/WRI363_Pulls_Data.csv"
-loc_card_data = "../data/WRI363_Oracle_Data.csv"
+loc_pull_data = "data/WRI363_Pulls_Data.csv"
+loc_card_data = "data/WRI363_Oracle_Data.csv"
 
 pull_data = pd.read_csv(loc_pull_data)
 pull_data["Date"] = pd.to_datetime(pull_data["Date"])
