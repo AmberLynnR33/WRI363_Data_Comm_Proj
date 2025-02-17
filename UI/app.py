@@ -5,7 +5,7 @@ import datetime
 
 st.set_page_config(layout="wide")
 
-st.title("Visualizing Oracle Card Pulls")
+st.title("Oracle Cards: Divination, Magick, or Statistically Likely Outcomes?")
 
 loc_pull_data = "../data/WRI363_Pulls_Data.csv"
 loc_card_data = "../data/WRI363_Oracle_Data.csv"
@@ -13,12 +13,14 @@ loc_card_data = "../data/WRI363_Oracle_Data.csv"
 pull_data = pd.read_csv(loc_pull_data)
 pull_data["Date"] = pd.to_datetime(pull_data["Date"])
 
-# explanation box
-
 
 # SIDEBAR 
 
+
+# explanation box
 with st.sidebar.expander("About this project"):
+    st.write("TODO")
+with st.sidebar.expander("The dataset"):
     st.write("TODO")
 with st.sidebar.expander("What are oracle cards?"):
     st.write("TODO")
@@ -35,8 +37,9 @@ visual_selection = st.sidebar.selectbox(
 
 
 if visual_selection == "Date vs Card Pulled":
-    start_date_range = st.sidebar.date_input("Select a Date Range", value=datetime.date(2024, 7,17), min_value=datetime.date(2024, 7, 17), max_value=datetime.date(2025, 1, 19))
-    end_date_range = st.sidebar.date_input("Select a Date Range", value=datetime.date(2025, 1, 19), min_value=datetime.date(2024, 7, 17), max_value=datetime.date(2025, 1, 19))
+    st.sidebar.write("Date Range:")
+    start_date_range = st.sidebar.date_input("Select a Starting Date", value=datetime.date(2024, 7,17), min_value=datetime.date(2024, 7, 17), max_value=datetime.date(2025, 1, 19))
+    end_date_range = st.sidebar.date_input("Select an Ending Date", value=datetime.date(2025, 1, 19), min_value=datetime.date(2024, 7, 17), max_value=datetime.date(2025, 1, 19))
     if start_date_range > end_date_range:
         st.error("Start date cannot be after end date.")
     else:
