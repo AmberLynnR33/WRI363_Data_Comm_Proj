@@ -24,7 +24,7 @@ for i in range(np.shape(pull_data)[0]):
     card_relation[add1] = card_relation.get(add1, 0) + 1
     card_relation[add2] = card_relation.get(add2, 0) + 1
 
-card_relation.pop(np.nan)
+card_relation["No-relation"] = card_relation.pop(np.nan)
 
 # creating dataframe
 meaning_code = []
@@ -37,23 +37,24 @@ misleading_data = {"How I related to the Card Pull": meaning_code, "Frequency": 
 misleading_dataframe = pd.DataFrame(data=misleading_data)
 # to make misleading: map colours to not be related to the theme
 theme_colours = {
-    "Academics": "#1f77b4",
-    "CSSC": "#EBD249",
-    "Event": "#2ca02c",
-    "Family-negative": "#4FDA04",
-    "Family-positive": "#E78A8A",
-    "Friendship-care": "#8c564b",
-    "Friendship-negative": "#6FB14C",
-    "Friendship-positive": "#FFCCCCS",
-    "Hobbies": "#bcbd22",
-    "LAUNCH": "#37B8A7",
-    "Life-advice": "#ffbb78",
-    "Love": "#98df8a",
-    "Mental-health": "#ff9896",
-    "Research": "#c5b0d5",
-    "Spirituality": "#c49c94",
-    "Work": "#f7b6d2",
-    "Workload": "#dbdb8d"
+    "Academics": "#FFB7B7",
+    "CSSC": "#E9853D",
+    "Event": "#6596FF",
+    "Family-negative": "#92B30D",
+    "Family-positive": "#FF7373",
+    "Friendship-care": "#B0BAFF",
+    "Friendship-negative": "#68D362",
+    "Friendship-positive": "#E79961",
+    "Hobbies": "#E176E9",
+    "LAUNCH": "#B395DD",
+    "Life-advice": "#23C4E4",
+    "Love": "#08BD7B",
+    "Mental-health": "#FF0000",
+    "Research": "#AEAEAE",
+    "Spirituality": "#FFD900",
+    "Work": "#DAC75D",
+    "Workload": "#BD9898",
+    "No-relation": "#FFFFFF"
 }
 
 # """ SIDEBAR """
@@ -69,7 +70,7 @@ with st.sidebar.expander("What are oracle cards?"):
 
 visual_selection = st.sidebar.selectbox(
     'Which visual would you like to explore?', 
-    ("Date vs Card Pulled", "Misleading Piece"),
+    ("Date vs Card Pulled", "Counter Data", "Misleading Piece"),
     index=None,
     placeholder="Select a visual to display...",
 )
@@ -90,7 +91,22 @@ elif visual_selection == "Date vs Card Pulled":
         filtered_data = pull_data[(pull_data["Date"] >= pd.to_datetime(start_date_range)) & (pull_data["Date"] <= pd.to_datetime(end_date_range))]
         filtered_data["Reversed"] = filtered_data["Reversed"].replace({1: "Reversed", 0: "Upright"})
         filtered_data = filtered_data.rename(columns={"Reversed": "Direction I Pulled Card"})
-        st.scatter_chart(data=filtered_data, x="Date", y="Card_Num", x_label="Date", y_label="Card Number of Card Pulled", color="Direction I Pulled Card", use_container_width=True)
+        base_data_comm_chart = alt.Chart(filtered_data).mark_circle(size=60).encode(
+            x=alt.X("Date:T", title="Date"),
+            y=alt.Y("Card_Num:Q", title="Card Number of Card Pulled"),
+            color=alt.Color("Direction I Pulled Card:N", scale=alt.Scale(domain=["Reversed", "Upright"], range=["#FFA7A7", "#A7BFFF"]), legend=alt.Legend(title="Card Direction")),
+            tooltip=["Date", "Card_Num", "Direction I Pulled Card"]
+        ).properties(
+            width=800, height=500  # Adjust size as needed
+        )
+        circle_outlines = alt.Chart(filtered_data).mark_circle(size=90, opacity=1, stroke="white", strokeWidth=1, fillOpacity=0).encode(
+            x=alt.X("Date:T"),
+            y=alt.Y("Card_Num:Q")
+        )
+
+        # Combine layers
+        chart = (circle_outlines + base_data_comm_chart).properties(width=800, height=500).interactive()
+        st.altair_chart(chart, use_container_width=True)
         st.write("TODO: Figure caption")
 elif visual_selection == "Misleading Piece":
 
