@@ -132,4 +132,4 @@ elif visual_selection == "Misleading Piece":
 
     st.write("TODO: Figure caption")
 elif visual_selection == "Counter Data":
-    st.audio("audio/richardson_counterdatapiece.mid")
+    st.audio("audio/richardson_counterdatapiece.wav")
