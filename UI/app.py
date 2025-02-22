@@ -131,5 +131,4 @@ elif visual_selection == "Misleading Piece":
     st.altair_chart(chart, use_container_width=True)
 
     st.write("TODO: Figure caption")
-elif visual_selection == "Counter Data":
-    st.audio("audio/richardson_counterdatapiece.wav")
+    
