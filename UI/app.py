@@ -70,7 +70,7 @@ with st.sidebar.expander("What are oracle cards?"):
 
 visual_selection = st.sidebar.selectbox(
     'Which visual would you like to explore?', 
-    ("Date vs Card Pulled", "Counter Data", "Misleading Piece"),
+    ("Date vs Card Pulled", "Misleading Piece"),
     index=None,
     placeholder="Select a visual to display...",
 )
@@ -131,4 +131,3 @@ elif visual_selection == "Misleading Piece":
     st.altair_chart(chart, use_container_width=True)
 
     st.write("TODO: Figure caption")
-    
