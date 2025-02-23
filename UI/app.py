@@ -70,7 +70,7 @@ with st.sidebar.expander("What are oracle cards?"):
 
 visual_selection = st.sidebar.selectbox(
     'Which visual would you like to explore?', 
-    ("Date vs Card Pulled", "Misleading Piece"),
+    ("Date vs Card Pulled", "Misleading Piece", "Counter Data Piece"),
     index=None,
     placeholder="Select a visual to display...",
 )
@@ -107,16 +107,21 @@ elif visual_selection == "Date vs Card Pulled":
         # Combine layers
         chart = (circle_outlines + base_data_comm_chart).properties(width=800, height=500).interactive()
         st.altair_chart(chart, use_container_width=True)
-        st.write("TODO: Figure caption")
+
+        # Figure Caption
+        st.caption("""Viewing the relationship between the date and the card pulled does not indicate any 
+        anomalies in cards pulled or a preference for upright or reversed card direction. 
+        Each dot represents one card drawn, with some days including multiple dots for each card pulled from 
+        the deck. Data from A. Richardson (personal communication, February 8, 2025).""")
 elif visual_selection == "Misleading Piece":
 
     st.header("Misleading Data: Frequency of How I Related to Card Theme")
 
-    # Create Bubble Chart
+    # create chart
     chart = alt.Chart(misleading_dataframe).mark_circle(opacity=0.9).encode(
         x=alt.X("How I related to the Card Pull", axis=None),
         y=alt.Y("jitter:Q", title="", axis=None),
-        size=alt.Size("Frequency:Q", scale=alt.Scale(range=[5000, 6000]), legend=None),  # Circle size based on count
+        size=alt.Size("Frequency:Q", scale=alt.Scale(range=[5000, 6000]), legend=None),
         color=alt.Color("How I related to the Card Pull",  
         scale=alt.Scale(domain=list(theme_colours.keys()), range=list(theme_colours.values())),  
         legend=alt.Legend(orient="right") ),
@@ -128,6 +133,27 @@ elif visual_selection == "Misleading Piece":
         height=400
     )
 
+    # render chart
     st.altair_chart(chart, use_container_width=True)
 
-    st.write("TODO: Figure caption")
+    # Figure Caption
+    st.caption("""Frequency of card draws that I connected to a specific theme in my life. 
+    Each circle represents one overarching theme that I connected the card pull to in my 
+    journal, where the size of the circle corresponds to how frequently I made this connection. 
+    The “No Relation” circle represents all cards that I did not relate to any theme. 
+    Data from A. Richardson (personal communication, February 8, 2025).""")
+elif visual_selection == "Counter Data Piece":
+
+    st.header("Counter Data: Representing Date vs Card Pulled in an Audio Format")
+
+    # audio
+    st.audio("audio/counterdatapiece.wav")
+
+    # Figure Caption
+    st.caption("""A representation of card draws by day created in MIDI audio format. 
+    Each note or chord played simultaneously corresponds to the card(s) drawn on a day. 
+    Each MIDI note number corresponds to the card pulled plus 34, to ensure the middle card 
+    in the deck corresponds to middle C on a piano. The MIDI file was converted to 
+    .wav file format for compatibility on various operating systems. 
+    Only days with data are represented. 
+    Data from A. Richardson (personal communication, February 8, 2025).""")
