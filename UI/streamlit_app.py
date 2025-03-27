@@ -298,7 +298,7 @@ elif visual_selection == "Counter Data Piece":
     st.header("Counter Data: Representing Date vs Card Pulled in an Audio Format")
 
     # audio
-    st.audio("audio/counterdatapiece.wav")
+    st.audio("counterdatapiece.wav")
 
     # Figure Caption
     st.markdown('''A representation of card draws by day created in MIDI audio format. 
