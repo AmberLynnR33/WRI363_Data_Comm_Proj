@@ -296,13 +296,11 @@ elif visual_selection == "Misleading Piece":
 elif visual_selection == "Counter Data Piece":
 
     st.header("Counter Data: Representing Date vs Card Pulled in an Audio Format")
-    
-    st.audio("audio/counterdatapiece.wav")
 
-    st.markdown(""":orange[[Find the audio file here](%s)]""" %'https://drive.google.com/file/d/1ty9jHrYs93fsTFkjtP4ivSvuhxdZ-JCj/view?usp=sharing')
-
-    # audio
-    #st.audio("counterdatapiece.wav", format="audio/wav")
+    try:    
+        st.audio("audio/counterdatapiece.wav")
+    except:
+        st.markdown(""":orange[[Find the audio file here](%s)]""" %'https://drive.google.com/file/d/1ty9jHrYs93fsTFkjtP4ivSvuhxdZ-JCj/view?usp=sharing')
 
     # Figure Caption
     st.markdown('''A representation of card draws by day created in MIDI audio format. 
