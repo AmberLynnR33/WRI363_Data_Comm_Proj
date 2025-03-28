@@ -163,6 +163,7 @@ if st.sidebar.button("Definitions", use_container_width=True):
     - Upright card: a card that is drawn upright.
     - Reversed card: a card that is drawn upside-down.
     - Guidebook: a booklet that comes with Tarot or oracle decks that describes each card's meaning
+    - Spread: pulling multiple cards from the deck at once and relating them together in some way. A common spread is past, present and future
     """)
     st.divider()
 if st.sidebar.button("References", use_container_width=True):
