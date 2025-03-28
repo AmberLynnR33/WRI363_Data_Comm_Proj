@@ -165,6 +165,24 @@ if st.sidebar.button("Definitions", use_container_width=True):
     - Guidebook: a booklet that comes with Tarot or oracle decks that describes each card's meaning
     """)
     st.divider()
+if st.sidebar.button("References", use_container_width=True):
+    button_press = True
+    st.markdown("""
+    Bjørndalen, O. M & Doursenaud, R. (n.d.). Mido [Python library].  https://mido.readthedocs.io/en/stable/index.html 
+                
+    Inspired Acoustics (n.d.). *MIDI Note Numbers and Center Frequencies*. https://inspiredacoustics.com/en/MIDI_note_numbers_and_center_frequencies 
+                
+    NumPy (2024). NumPy [Python library]. NumPy Developers. https://numpy.org/doc/2.1/index.html 
+                
+    Pandas (2025). Pandas [Python library]. Pandas via NumFOCUS. https://pandas.pydata.org/ 
+                
+    Richardson, A. (2025). *WRI363_Data_Comm_Prog*. GitHub. https://github.com/AmberLynnR33/WRI363_Data_Comm_Proj 
+                
+    Roux, J. (2022). Woodland Wardens [oracle card deck]. Andrews McMeel.
+                
+    Streamlit (2024) Streamlit [Python framework]. Snowflake Inc. https://streamlit.io/ 
+    """)
+    st.divider()
 visual_selection = st.sidebar.selectbox(
     'Which visual would you like to explore?', 
     ("Date vs Card Pulled", "Misleading Piece", "Counter Data Piece"),
