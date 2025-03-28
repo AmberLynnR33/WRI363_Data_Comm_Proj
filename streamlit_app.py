@@ -249,7 +249,7 @@ elif visual_selection == "Misleading Piece":
     st.sidebar.markdown("""### The Misleading Scale:""")
     
     chosen_scalar = st.sidebar.slider("Slide me to change how to mislead!", 0, 3, 3)
-    scaler_vals = [[333,9990],[10,9999],[333,9990],[5000,6000]]
+    scaler_vals = [[9990, 333],[5,10000],[333,9990],[5000,6000]]
 
     st.sidebar.markdown("""
     **0:** reverse the scale (larger values become smaller, smaller values become larger)
